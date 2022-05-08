@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+	<!-- NAVBAR -->
+	<div class="">
+
+		<nav class="navbar navbar-expand-lg bg-dark bg-gradient">
+			<a class="navbar-brand" href="#"> <img
+				src="https://thumbs.dreamstime.com/b/book-icon-blue-round-button-isolated-abstract-illustration-103896875.jpg"
+				alt="library icon" width=50px height=50px class="mb-3 pb-3" />
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto text-uppercase p-3">
+					<li class="nav-item active ml-3"><a
+						class="nav-link text-white" th:href="@{/home}">
+							<h3>Home</h3>
+					</a></li>
+					<li class="nav-item ml-3"><a class="nav-link text-white"
+						th:href="@{/addbook}"><h3>Add Book</h3></a></li>
+					<li class="nav-item ml-3"><a class="nav-link text-white"
+						th:href="@{/book}"><h3>Show Book</h3></a></li>
+					<li class="nav-item ml-3"><a class="nav-link text-white"
+						th:href="@{/search}"><h3>Search Book</h3></a></li>
+					<li class="nav-item ml-3"><a class="nav-link text-white"
+						th:href="@{/issued}"><h3>Issued Books</h3></a></li>
+				</ul>
+
+			<div class="text-right m-3 navbar navbar-expand-lg ">
+					<div sec:authorize="isAnonymous()" class="collapse navbar-collapse">
+						<ul class="navbar-nav">
+							<li class="nav-item ml-3"><a class="nav-link text-white"
+								th:href="@{/register}">
+									<h3>Register</h3>
+							</a></li>
+							<li class="nav-item ml-3"><a class="nav-link text-white"
+								th:href="@{/login}"><h3>Login</h3></a></li>
+						</ul>
+					</div>
+
+
+
+					<div sec:authorize="isAuthenticated()"
+						class="collapse navbar-collapse">
+						<ul class="navbar-nav">
+							<li class="nav-item ml-3">
+								<h3 class="text-white">[[${#request.remoteUser}]]</h3>
+							</li>
+							<li class="nav-item ml-3">
+								<form th:action="@{/logout}" method="post">
+
+
+
+									<button class="btn btn-link text-white" type="submit">Logout</button>
+
+								</form>
+							</li>
+						</ul>
+
+
+					</div>
+				</div>
+
+			</div>
+		</nav>
+
+	</div>
+
+
+	<!-- END OF NAVBAR CODE -->
+
+
+	<div class="container">
+		<div class="text-center">
+			<h1>Add book</h1>
+
+		</div>
+
+
+		<form th:action="@{/addbook}" method="post" style="margin: 0 auto;"
+			th:object="${book}">
+
+			<div class="m-3">
+
+				<!-- Book name -->
+				<div class="row">
+
+					<div class="form-group col-6">
+						<label class="form-label">Enter Book Name</label> <input
+							type="text" class="form-control" th:field="*{name}" required />
+						<!-- th:field="*{name}" to link the input with email in entity -->
+
+					</div>
+				</div>
+				<!-- Description -->
+				<div class="form-group col-6">
+					<label class="form-label">Enter Description </label>
+					<div>
+						<input type="text" class="form-control" th:field="*{description}"
+							minlength="2" maxlength="50" />
+					</div>
+				</div>
+
+
+				<!-- Author -->
+				<div class="form-group col-6">
+					<label class="form-label">Enter Author </label>
+					<div>
+						<input type="text" class="form-control" th:field="*{author}"
+							required minlength="2" maxlength="20" />
+					</div>
+				</div>
+
+				<!-- Publication -->
+				<div class="form-group col-6">
+					<label class="form-label">Enter Publication </label>
+					<div>
+						<input type="text" class="form-control" th:field="*{publication}"
+							minlength="2" maxlength="20" />
+					</div>
+				</div>
+
+
+
+				<!-- Submit -->
+				<div class="text-center">
+					<button type="submit" class="btn btn-primary btn-lg">Add
+						Book</button>
+				</div>
+		</form>
+
+
+	</div>
+
+</body>
+</html>

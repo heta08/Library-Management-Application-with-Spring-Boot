@@ -1,0 +1,7 @@
+com/mj/librarymanagement/controller/BookController.class
+com/mj/librarymanagement/input/RawBook.class
+com/mj/librarymanagement/LibraryManagementApplication.class
+com/mj/librarymanagement/repositories/BookRepository.class
+com/mj/librarymanagement/model/Book.class
+com/mj/librarymanagement/controller/HealthController.class
+com/mj/librarymanagement/services/BookService.class
